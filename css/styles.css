@@ -1,14 +1,10 @@
-@layer reset, theme, base, layout, modules, utilities;
+@layer reset, theme, base, layout, modules;
 
 @layer reset {
   *,
   *::before,
   *::after {
     box-sizing: border-box;
-  }
-
-  body {
-    margin: unset;
   }
 
   button,
@@ -44,5 +40,116 @@
     --color-sedan: #e28525;
     --color-suv: #016972;
     --color-luxury: #00403f;
+  }
+}
+
+@layer base {
+  body {
+    background-color: #f2f2f2;
+    font-size: var(--font-size-1);
+    font-family: "Lexend Deca";
+  }
+
+  h1,
+  h2 {
+    font-family: "Big Shoulders Display";
+  }
+}
+
+@layer layout {
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-3);
+  }
+
+  main {
+    display: grid;
+    inline-size: min(100%, 1280px);
+    container: layout / inline-size;
+    border-radius: var(--radius-3);
+    overflow: hidden;
+
+    @media (width > 50rem) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@layer modules {
+  article {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+    padding: var(--size-8);
+
+    @container (width < 400px ) {
+      padding: var(--size-6);
+    }
+
+    > h2 {
+      color: white;
+      text-transform: uppercase;
+      font-size: var(--font-size-fluid-2);
+      margin-block: var(--size-4);
+    }
+
+    > p {
+      color: hsl(0 0% 100% / 70%);
+      line-height: var(--font-lineheight-3);
+    }
+
+    > a {
+      display: inline-block;
+      background-color: white;
+      padding: var(--size-3) var(--size-6);
+      border-radius: var(--radius-6);
+      margin-block-start: var(--size-9);
+      width: fit-content;
+      text-decoration: none;
+      border: var(--border-size-2) solid white;
+    }
+  }
+
+  .sedan {
+    background-color: var(--color-sedan);
+
+    > a {
+      color: var(--color-sedan);
+    }
+
+    > a:hover {
+      background-color: var(--color-sedan);
+      color: white;
+    }
+  }
+
+  .suv {
+    background-color: var(--color-suv);
+
+    > a {
+      color: var(--color-suv);
+    }
+
+    > a:hover {
+      background-color: var(--color-suv);
+      color: white;
+    }
+  }
+
+  .luxury {
+    background-color: var(--color-luxury);
+
+    > a {
+      color: var(--color-luxury);
+    }
+
+    > a:hover {
+      background-color: var(--color-luxury);
+      color: white;
+    }
   }
 }
