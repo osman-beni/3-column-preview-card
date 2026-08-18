@@ -17,8 +17,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: Not available yet
-- Live Site URL: Not available yet
+- [Solution](https://github.com/osman-beni/3-column-preview-card)
+- [Demo](https://osman-beni.github.io/3-column-preview-card/)
 
 ## My process
 
