@@ -53,9 +53,15 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     gap: var(--size-3);
+    line-height: var(--font-lineheight-3);
+
+    > .container {
+      max-width: var(--size-content-3);
+      margin-inline: auto;
+      padding: var(--size-4);
+    }
   }
 
   .l-home {
@@ -70,20 +76,70 @@
     }
   }
 
+  header {
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      > h1 {
+        margin: 0;
+      }
+    }
+
+    > blockquote {
+      margin: 0;
+      margin-block-start: var(--size-4);
+      padding: var(--size-3);
+    }
+  }
+
   #index-page {
     background-color: #f2f2f2;
+    align-items: center;
   }
 
   #sedans-page {
     background-color: var(--color-sedan);
+
+    blockquote {
+      border-left: var(--border-size-3) solid;
+      border-image: repeating-linear-gradient(
+          45deg,
+          black 0 5px,
+          var(--color-sedan) 5px 10px
+        )
+        1;
+    }
   }
 
   #suv-page {
     background-color: var(--color-suv);
+
+    blockquote {
+      border-left: var(--border-size-3) solid;
+      border-image: repeating-linear-gradient(
+          45deg,
+          black 0 5px,
+          var(--color-suv) 5px 10px
+        )
+        1;
+    }
   }
 
   #luxury-page {
     background-color: var(--color-luxury);
+    color: var(--gray-0);
+
+    blockquote {
+      border-left: var(--border-size-3) solid;
+      border-image: repeating-linear-gradient(
+          45deg,
+          var(--gray-0) 0 5px,
+          var(--color-luxury) 5px 10px
+        )
+        1;
+    }
   }
 }
 
@@ -94,12 +150,12 @@
     grid-template-rows: subgrid;
     padding: var(--size-8);
 
-    @container (width < 400px ) {
+    @container (width < 400px) {
       padding: var(--size-6);
     }
 
     > h2 {
-      color: white;
+      color: var(--gray-0);
       text-transform: uppercase;
       font-size: var(--font-size-fluid-2);
       margin-block: var(--size-4);
@@ -112,64 +168,99 @@
 
     > a {
       display: inline-block;
-      background-color: white;
-      padding: var(--size-3) var(--size-6);
-      border-radius: var(--radius-6);
-      margin-block-start: var(--size-9);
       width: fit-content;
+      margin-block-start: var(--size-9);
+      padding: var(--size-3) var(--size-6);
+
+      color: var(--card-color);
+      background-color: var(--gray-0);
+      border: var(--border-size-2) solid var(--gray-0);
+      border-radius: var(--radius-6);
+
       text-decoration: none;
-      border: var(--border-size-2) solid white;
+
+      &:hover {
+        color: var(--gray-0);
+        background-color: var(--card-color);
+      }
     }
   }
 
   .sedan {
-    background-color: var(--color-sedan);
-
-    > a {
-      color: var(--color-sedan);
-    }
-
-    > a:hover {
-      background-color: var(--color-sedan);
-      color: white;
-    }
+    --card-color: var(--color-sedan);
   }
 
   .suv {
-    background-color: var(--color-suv);
-
-    > a {
-      color: var(--color-suv);
-    }
-
-    > a:hover {
-      background-color: var(--color-suv);
-      color: white;
-    }
+    --card-color: var(--color-suv);
   }
 
   .luxury {
-    background-color: var(--color-luxury);
+    --card-color: var(--color-luxury);
+  }
 
-    > a {
-      color: var(--color-luxury);
-    }
+  article {
+    background-color: var(--card-color);
+  }
+}
 
-    > a:hover {
-      background-color: var(--color-luxury);
-      color: white;
+@layer modules {
+  button {
+    padding: var(--size-2);
+    background-color: var(--gray-0);
+    border-radius: var(--radius-6);
+    border: var(--border-size-2) solid var(--gray-0);
+    display: inline-block;
+  }
+
+  #sedans-page {
+    --page-color: var(--color-sedan);
+  }
+
+  #suv-page {
+    --page-color: var(--color-suv);
+  }
+
+  #luxury-page {
+    --page-color: var(--color-luxury);
+  }
+
+  #sedans-page,
+  #suv-page,
+  #luxury-page {
+    button {
+      color: var(--page-color);
+      margin-block: var(--size-4);
+
+      &:hover {
+        background-color: var(--page-color);
+        color: var(--gray-0);
+      }
     }
   }
 }
 
-.sedan-icon {
-  view-transition-name: sedan;
-}
+@layer transitions {
+  .sedan-icon {
+    view-transition-name: sedan-icon;
+  }
 
-.suv-icon {
-  view-transition-name: suv;
-}
+  .suv-icon {
+    view-transition-name: suv-icon;
+  }
 
-.luxury-icon {
-  view-transition-name: luxury;
+  .luxury-icon {
+    view-transition-name: luxury-icon;
+  }
+
+  .sedan-title {
+    view-transition-name: sedan-title;
+  }
+
+  .suv-title {
+    view-transition-name: suv-title;
+  }
+
+  .luxury-title {
+    view-transition-name: luxury-title;
+  }
 }
