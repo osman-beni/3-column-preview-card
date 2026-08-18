@@ -1,5 +1,9 @@
 @layer reset, theme, base, layout, modules;
 
+@view-transition {
+  navigation: auto;
+}
+
 @layer reset {
   *,
   *::before,
@@ -22,17 +26,6 @@
     max-inline-size: 100%;
     height: auto;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-  }
 }
 
 @layer theme {
@@ -45,7 +38,6 @@
 
 @layer base {
   body {
-    background-color: #f2f2f2;
     font-size: var(--font-size-1);
     font-family: "Lexend Deca";
   }
@@ -66,7 +58,7 @@
     gap: var(--size-3);
   }
 
-  main {
+  .l-home {
     display: grid;
     inline-size: min(100%, 1280px);
     container: layout / inline-size;
@@ -76,6 +68,22 @@
     @media (width > 50rem) {
       grid-template-columns: repeat(3, 1fr);
     }
+  }
+
+  #index-page {
+    background-color: #f2f2f2;
+  }
+
+  #sedans-page {
+    background-color: var(--color-sedan);
+  }
+
+  #suv-page {
+    background-color: var(--color-suv);
+  }
+
+  #luxury-page {
+    background-color: var(--color-luxury);
   }
 }
 
@@ -152,4 +160,16 @@
       color: white;
     }
   }
+}
+
+.sedan-icon {
+  view-transition-name: sedan;
+}
+
+.suv-icon {
+  view-transition-name: suv;
+}
+
+.luxury-icon {
+  view-transition-name: luxury;
 }
