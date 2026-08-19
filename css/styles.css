@@ -204,12 +204,13 @@
 }
 
 @layer modules {
-  button {
+  .backLink {
     padding: var(--size-2);
     background-color: var(--gray-0);
     border-radius: var(--radius-6);
     border: var(--border-size-2) solid var(--gray-0);
     display: inline-block;
+    text-decoration: none;
   }
 
   #sedans-page {
@@ -227,7 +228,7 @@
   #sedans-page,
   #suv-page,
   #luxury-page {
-    button {
+    .backLink {
       color: var(--page-color);
       margin-block: var(--size-4);
 
